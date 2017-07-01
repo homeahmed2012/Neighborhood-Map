@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="icon">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+            </div>
+            <p>Historical places in Cairo</p>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 side-pan">
+                    <div class="search">
+                        <input id="place" data-bind="textInput: renderList()" type="text" placeholder="filter places">
+                    </div>
+                    <div class="menu">
+                        <ul id="list" data-bind="foreach: search_list">
+                            <li data-bind="text: title, click: $parent.bounce"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-9 main-map" id="map"></div>
+            </div>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/knockout-3.4.2.js"></script>
+    <script src="js/app.js"></script>
+    <script async defer 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1EX95RXUdCqko--KIq9hzoNiW4iBxvH8&v=3&callback=initMap">
+    </script>
+    </body>
+</html>
