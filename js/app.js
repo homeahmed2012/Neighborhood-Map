@@ -40,16 +40,16 @@ function ViewModel() {
                 this.marker_list()[i].setMap(null);
             }
         }
-    }
+    };
     // make the marker bounce when place in the list is clicked
     this.bounce = function (place) {
-        var marker = self.marker_list()[place['id']];
+        var marker = self.marker_list()[place.id];
         marker.setAnimation(google.maps.Animation.BOUNCE);
         populateInfoWindow(marker);
         setTimeout(function () {
             marker.setAnimation(null);
         }, 2100);
-    }
+    };
     }
 
     function initMap() {
@@ -63,6 +63,14 @@ function ViewModel() {
         });
         var bounds = new google.maps.LatLngBounds();
         infowindow = new google.maps.InfoWindow();
+        function addInfo() {
+            var self = this;
+            self.setAnimation(google.maps.Animation.BOUNCE);
+            populateInfoWindow(self);
+            setTimeout(function () {
+                self.setAnimation(null);
+            }, 2100);
+        }
         for (var i = 0; i < searchview.locations.length; i++) {
             var position = searchview.locations[i].position;
             var title = searchview.locations[i].title;
@@ -75,14 +83,7 @@ function ViewModel() {
             });
             searchview.marker_list.push(marker);
             // show info window and add animation when the marker is clicked
-            marker.addListener('click', function () {
-                var self = this;
-                self.setAnimation(google.maps.Animation.BOUNCE);
-                populateInfoWindow(self);
-                setTimeout(function () {
-                    self.setAnimation(null);
-                }, 2100);
-            });
+            marker.addListener('click', addInfo);
             // fit the bounds of the map to show all markers
             bounds.extend(searchview.locations[i].position);
         }
@@ -115,7 +116,8 @@ function ViewModel() {
             dataType: 'jsonp',
             success: function (response) {
                 if (response) {
-                    var paragraph = response['query']['pages'][Object.keys(response['query']['pages'])[0]]['extract'];
+                    // var paragraph = response['query']['pages'][Object.keys(response['query']['pages'])[0]]['extract'];
+                    var paragraph = response.query.pages[Object.keys(response.query.pages)[0]].extract;
                     clearTimeout(wikiRequestTimeout);
                     setRes(paragraph);
                 } else {
