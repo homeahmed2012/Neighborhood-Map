@@ -9,7 +9,7 @@ div {
     padding: 0;
 }
 
-.top-bar {
+header {
     width: 100%;
     height: 40px;
     background: black;
@@ -54,7 +54,7 @@ div {
 }
 
 .search {
-    background-color: #D0D3D4;
+    background-color: #d0d3d4;
     height: 10%;
     width: 100%;
 }
@@ -67,7 +67,7 @@ div {
 }
 
 .menu {
-    background-color: #ECF0F1;
+    background-color: #ecf0f1;
     height: 75%;
     width: 100%;
 }
