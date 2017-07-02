@@ -5,7 +5,7 @@ function ViewModel() {
     var self = this;
     // the filter input
     this.input = ko.observable();
-    //list of all markers in the map
+    // to show and hide the side pan
     this.currentDisplay = ko.observable(false);
     this.changeDisplay = function () {
         if (self.currentDisplay()) {
@@ -14,6 +14,7 @@ function ViewModel() {
             self.currentDisplay(true);
         }
     };
+    //list of all markers in the map
     this.markerList = ko.observableArray([]);
     // list of filtered markers, cintian marker name and id only
     this.searchList = ko.observableArray([]);
